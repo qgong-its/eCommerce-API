@@ -19,6 +19,23 @@ export const orderProductSchema = new Schema<OrderProductType>(
   },
 );
 
+orderProductSchema.set('toJSON', {
+  transform: (_doc, ret) => {
+    const response = ret as {
+      _id?: { toString: () => string };
+      id?: string;
+      __v?: number;
+    };
+
+    response.id = response._id?.toString();
+
+    delete response._id;
+    delete response.__v;
+
+    return ret;
+  },
+});
+
 export const orderSchema = new Schema<OrderType>(
   {
     userId: {
@@ -44,3 +61,20 @@ export const orderSchema = new Schema<OrderType>(
     timestamps: true,
   },
 );
+
+orderSchema.set('toJSON', {
+  transform: (_doc, ret) => {
+    const response = ret as {
+      _id?: { toString: () => string };
+      id?: string;
+      __v?: number;
+    };
+
+    response.id = response._id?.toString();
+
+    delete response._id;
+    delete response.__v;
+
+    return ret;
+  },
+});

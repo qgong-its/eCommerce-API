@@ -18,7 +18,7 @@ export const userSchema = new Schema<UserType>(
     password: {
       type: String,
       required: [true, 'Password is required'],
-      select: false,
+      select: false, // exclude sensitive fields
       minlength: [8, 'Password must be at least 8 characters long'],
     },
     isActive: {
@@ -30,3 +30,20 @@ export const userSchema = new Schema<UserType>(
     timestamps: true,
   },
 );
+
+userSchema.set('toJSON', {
+  transform: (_doc, ret) => {
+    const response = ret as {
+      _id?: { toString: () => string };
+      id?: string;
+      __v?: number;
+    };
+
+    response.id = response._id?.toString();
+
+    delete response._id;
+    delete response.__v;
+
+    return ret;
+  },
+});
