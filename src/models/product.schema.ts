@@ -28,3 +28,20 @@ export const productSchema = new Schema<ProductType>(
     timestamps: true,
   },
 );
+
+productSchema.set('toJSON', {
+  transform: (_doc, ret) => {
+    const response = ret as {
+      _id?: { toString: () => string };
+      id?: string;
+      __v?: number;
+    };
+
+    response.id = response._id?.toString();
+
+    delete response._id;
+    delete response.__v;
+
+    return ret;
+  },
+});
