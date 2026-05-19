@@ -1,10 +1,6 @@
 import { z } from 'zod';
 import { objectIdZodSchema } from './common/objectId.zod.ts';
 
-export const productIdParamsZodSchema = z
-  .object({ id: objectIdZodSchema })
-  .strict();
-
 export const quantityZodSchema = z
   .number()
   .int('Quantity must be an integer')
@@ -16,11 +12,7 @@ export const orderProductZodSchema = z
     productId: objectIdZodSchema,
     quantity: quantityZodSchema,
   })
-  .strict();
-
-export const userIdParamsZodSchema = z
-  .object({ id: objectIdZodSchema })
-  .strict();
+  .strict();  
 
 export const orderIdParamsZodSchema = z
   .object({ id: objectIdZodSchema })
