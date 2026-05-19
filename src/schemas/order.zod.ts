@@ -12,7 +12,7 @@ export const orderProductZodSchema = z
     productId: objectIdZodSchema,
     quantity: quantityZodSchema,
   })
-  .strict();  
+  .strict();
 
 export const orderIdParamsZodSchema = z
   .object({ id: objectIdZodSchema })
@@ -31,13 +31,8 @@ export const createOrderZodSchema = z
 
 export type CreateOrderZodDTO = z.infer<typeof createOrderZodSchema>;
 
-export const updateOrderZodSchema = z
-  .object({
-    products: z
-      .array(orderProductZodSchema)
-      .min(1, 'At least one product is required')
-      .optional(),
-  })
+export const updateOrderZodSchema = createOrderZodSchema
+  .pick({products: true})
   .strict()
   .refine((data) => Object.keys(data).length > 0, {
     message: 'At least one product is required',
