@@ -24,6 +24,8 @@ export const productIdParamsZodSchema = z
   })
   .strict();
 
+export type ProductIdParamsZodDTO = z.infer<typeof productIdParamsZodSchema>;
+
 export const createProductZodSchema = z
   .object({
     name: productNameZodSchema,
