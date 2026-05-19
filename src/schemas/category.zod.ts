@@ -13,6 +13,8 @@ export const categoryIdParamsZodSchema = z
   })
   .strict();
 
+export type CategoryIdParamsZodDTO = z.infer<typeof categoryIdParamsZodSchema>;
+
 export const createCategoryZodSchema = z
   .object({
     name: categoryNameZodSchema,
