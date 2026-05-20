@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:8080/api
+@categoryId = 665000000000000000000001
+@productId = 665100000000000000000001
+@userId = 665200000000000000000001
+@orderId = 665300000000000000000001
+
+
+### GET users
+GET {{baseUrl}}/users
+
+### GET user by id
+GET {{baseUrl}}/users/{{userId}}
+
+@userName = user-{{$timestamp}}
+
+### POST create user
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "{{userName}}",
+  "email": "rest.client.user@example.com",
+  "password": "Test123!"
+}
+
+### PATCH update user
+PATCH {{baseUrl}}/users/{{createUser.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "name": "{{userName}}-upd"
+}
+
+### DELETE user
+DELETE {{baseUrl}}/users/{{createUser.response.body.$.id}}
