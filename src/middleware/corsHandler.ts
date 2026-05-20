@@ -5,7 +5,7 @@ const allowedOrigins =
     ? [process.env.FRONTEND_URL as string]
     : ['http://localhost:5173'];
 
-export const corsMiddleware = cors({
+export const corsHandler = cors({
   origin: allowedOrigins,
   credentials: true,
 });
