@@ -8,7 +8,7 @@ import {
   updateUser,
 } from '#controllers';
 
-import { basicErrorHandler, extendedErrorHandler, validate } from '#middleware';
+import { validate } from '#middleware';
 import {
   createUserZodSchema,
   updateUserZodSchema,

@@ -8,7 +8,7 @@ import {
   updateCategory,
 } from '#controllers';
 
-import { basicErrorHandler, extendedErrorHandler, validate } from '#middleware';
+import { validate } from '#middleware';
 import {
   createCategoryZodSchema,
   updateCategoryZodSchema,
