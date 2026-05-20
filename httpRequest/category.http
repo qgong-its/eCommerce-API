@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:8080/api
+@categoryId = 665000000000000000000001
+@productId = 665100000000000000000001
+@userId = 665200000000000000000001
+@orderId = 665300000000000000000001
+
+
+### GET categories
+GET {{baseUrl}}/categories
+
+### GET category by id
+GET {{baseUrl}}/categories/{{categoryId}}
+
+@categoryName = cat-{{$timestamp}}
+
+### POST create category
+# @name createCategory
+POST {{baseUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": "{{categoryName}}"
+}
+
+### PATCH update category
+PATCH {{baseUrl}}/categories/{{createCategory.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "name": "{{categoryName}}-upd"
+}
+
+### DELETE category
+DELETE {{baseUrl}}/categories/{{createCategory.response.body.$.id}}

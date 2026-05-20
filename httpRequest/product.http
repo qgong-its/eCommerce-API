@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:8080/api
+@categoryId = 665000000000000000000001
+@productId = 665100000000000000000001
+@userId = 665200000000000000000001
+@orderId = 665300000000000000000001
+
+
+### GET products
+GET {{baseUrl}}/products
+
+### GET product by id
+GET {{baseUrl}}/products/{{productId}}
+
+@productName = prod-{{$timestamp}}
+
+### POST create product
+# @name createProduct
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "{{productName}}",
+  "description": "Temporary product created by REST Client test.",
+  "price": 19.99,
+  "categoryId": "{{categoryId}}"
+}
+
+### PATCH update product
+PATCH {{baseUrl}}/products/{{createProduct.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "name": "{{productName}}-upd",
+  "price": 24.99
+}
+
+### DELETE product
+DELETE {{baseUrl}}/products/{{createProduct.response.body.$.id}}

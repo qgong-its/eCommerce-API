@@ -1,0 +1,51 @@
+@baseUrl = http://localhost:8080/api
+@categoryId = 665000000000000000000001
+@productId = 665100000000000000000001
+@userId = 665200000000000000000001
+@orderId = 665300000000000000000001
+
+
+### GET orders
+GET {{baseUrl}}/orders
+
+### GET order by id
+GET {{baseUrl}}/orders/{{orderId}}
+
+### POST create order
+# @name createOrder
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "products": [
+    {
+      "productId": "665100000000000000000003",
+      "quantity": 1
+    },
+    {
+      "productId": "665100000000000000000004",
+      "quantity": 2
+    }
+  ]
+}
+
+### PATCH update order
+PATCH {{baseUrl}}/orders/{{createOrder.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "products": [
+    {
+      "productId": "665100000000000000000006",
+      "quantity": 1
+    },
+    {
+      "productId": "665100000000000000000007",
+      "quantity": 3
+    }
+  ]
+}
+
+### DELETE order
+DELETE {{baseUrl}}/orders/{{createOrder.response.body.$.id}}
