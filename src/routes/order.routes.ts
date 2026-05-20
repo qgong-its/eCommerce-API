@@ -8,7 +8,7 @@ import {
   updateOrder,
 } from '#controllers';
 
-import { basicErrorHandler, extendedErrorHandler, validate } from '#middleware';
+import { validate } from '#middleware';
 import {
   createOrderZodSchema,
   updateOrderZodSchema,
